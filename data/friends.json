@@ -1,6 +1,7 @@
 [
   {
     "name": "Edwin Miyatake",
+    "image": "/friends/edwin.png",
     "gender": "Male",
     "playsValorant": "Yes",
     "playsLeague": "Yes",
@@ -12,6 +13,7 @@
   },
   {
     "name": "Sarah Tseng",
+    "image": "/friends/sarah.png",
     "gender": "Female",
     "playsValorant": "Yes",
     "playsLeague": "No",
@@ -23,6 +25,7 @@
   },
   {
     "name": "Bobby Kong",
+    "image": "/friends/bobby.png",
     "gender": "Male",
     "playsValorant": "No",
     "playsLeague": "Yes",
@@ -34,6 +37,7 @@
   },
   {
     "name": "Rishav Ghosh",
+    "image": "/friends/rishav.png",
     "gender": "Male",
     "playsValorant": "Yes",
     "playsLeague": "No",
@@ -45,6 +49,7 @@
   },
   {
     "name": "Chris Wang",
+    "image": "/friends/chris.png",
     "gender": "Male",
     "playsValorant": "No",
     "playsLeague": "Yes",
@@ -56,6 +61,7 @@
   },
   {
     "name": "Alan Han",
+    "image": "/friends/alan.png",
     "gender": "Male",
     "playsValorant": "No",
     "playsLeague": "No",
@@ -67,6 +73,7 @@
   },
   {
     "name": "Brady Wu",
+    "image": "/friends/brady.png",
     "gender": "Male",
     "playsValorant": "No",
     "playsLeague": "Yes",
@@ -78,6 +85,7 @@
   },
   {
     "name": "Collin Gaja",
+    "image": "/friends/collin.png",
     "gender": "Male",
     "playsValorant": "Yes",
     "playsLeague": "Yes",
@@ -89,6 +97,7 @@
   },
   {
     "name": "Candise Gaja",
+    "image": "/friends/candise.png",
     "gender": "Female",
     "playsValorant": "Yes",
     "playsLeague": "Yes",
@@ -100,6 +109,7 @@
   },
   {
     "name": "Justin Wu",
+    "image": "/friends/justin.png",
     "gender": "Male",
     "playsValorant": "Yes",
     "playsLeague": "Yes",
@@ -111,6 +121,7 @@
   },
   {
     "name": "Jon Tangpiti",
+    "image": "/friends/jon.png",
     "gender": "Male",
     "playsValorant": "Yes",
     "playsLeague": "Yes",
@@ -122,6 +133,7 @@
   },
   {
     "name": "Kyle Araki",
+    "image": "/friends/kyle.png",
     "gender": "Male",
     "playsValorant": "No",
     "playsLeague": "Yes",
@@ -133,6 +145,7 @@
   },
   {
     "name": "Kevin Lee",
+    "image": "/friends/kevin.png",
     "gender": "Male",
     "playsValorant": "Yes",
     "playsLeague": "Yes",
@@ -144,6 +157,7 @@
   },
   {
     "name": "Phi Bui",
+    "image": "/friends/phi.png",
     "gender": "Male",
     "playsValorant": "Yes",
     "playsLeague": "Yes",
@@ -155,6 +169,7 @@
   },
   {
     "name": "Megan Wei",
+    "image": "/friends/megan.png",
     "gender": "Female",
     "playsValorant": "No",
     "playsLeague": "Yes",
@@ -166,6 +181,7 @@
   },
   {
     "name": "Johanna Lim",
+    "image": "/friends/johanna.png",
     "gender": "Female",
     "playsValorant": "No",
     "playsLeague": "No",
@@ -177,6 +193,7 @@
   },
   {
     "name": "Jason Chang",
+    "image": "/friends/jason.png",
     "gender": "Male",
     "playsValorant": "Yes",
     "playsLeague": "Yes",
@@ -188,6 +205,7 @@
   },
   {
     "name": "Robin Lee",
+    "image": "/friends/robin.png",
     "gender": "Male",
     "playsValorant": "Yes",
     "playsLeague": "Yes",
