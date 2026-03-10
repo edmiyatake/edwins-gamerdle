@@ -1,0 +1,200 @@
+[
+  {
+    "name": "Edwin Miyatake",
+    "gender": "Male",
+    "playsValorant": "Yes",
+    "playsLeague": "Yes",
+    "employed": "No",
+    "hasSiblings": "Yes",
+    "divergent": "No",
+    "boosted": "No",
+    "single": "No"
+  },
+  {
+    "name": "Sarah Tseng",
+    "gender": "Female",
+    "playsValorant": "Yes",
+    "playsLeague": "No",
+    "employed": "Yes",
+    "hasSiblings": "No",
+    "divergent": "No",
+    "boosted": "No",
+    "single": "No"
+  },
+  {
+    "name": "Bobby Kong",
+    "gender": "Male",
+    "playsValorant": "No",
+    "playsLeague": "Yes",
+    "employed": "Yes",
+    "hasSiblings": "No",
+    "divergent": "Yes",
+    "boosted": "No",
+    "single": "Yes"
+  },
+  {
+    "name": "Rishav Ghosh",
+    "gender": "Male",
+    "playsValorant": "Yes",
+    "playsLeague": "No",
+    "employed": "Yes",
+    "hasSiblings": "No",
+    "divergent": "Yes",
+    "boosted": "Yes",
+    "single": "Yes"
+  },
+  {
+    "name": "Chris Wang",
+    "gender": "Male",
+    "playsValorant": "No",
+    "playsLeague": "Yes",
+    "employed": "Yes",
+    "hasSiblings": "No",
+    "divergent": "No",
+    "boosted": "No",
+    "single": "Yes"
+  },
+  {
+    "name": "Alan Han",
+    "gender": "Male",
+    "playsValorant": "No",
+    "playsLeague": "No",
+    "employed": "Yes",
+    "hasSiblings": "No",
+    "divergent": "No",
+    "boosted": "No",
+    "single": "Yes"
+  },
+  {
+    "name": "Brady Wu",
+    "gender": "Male",
+    "playsValorant": "No",
+    "playsLeague": "Yes",
+    "employed": "No",
+    "hasSiblings": "No",
+    "divergent": "Yes",
+    "boosted": "No",
+    "single": "Yes"
+  },
+  {
+    "name": "Collin Gaja",
+    "gender": "Male",
+    "playsValorant": "Yes",
+    "playsLeague": "Yes",
+    "employed": "Yes",
+    "hasSiblings": "Yes",
+    "divergent": "Yes",
+    "boosted": "No",
+    "single": "No"
+  },
+  {
+    "name": "Candise Gaja",
+    "gender": "Female",
+    "playsValorant": "Yes",
+    "playsLeague": "Yes",
+    "employed": "Yes",
+    "hasSiblings": "Yes",
+    "divergent": "No",
+    "boosted": "No",
+    "single": "No"
+  },
+  {
+    "name": "Justin Wu",
+    "gender": "Male",
+    "playsValorant": "Yes",
+    "playsLeague": "Yes",
+    "employed": "No",
+    "hasSiblings": "Yes",
+    "divergent": "Yes",
+    "boosted": "No",
+    "single": "No"
+  },
+  {
+    "name": "Jon Tangpiti",
+    "gender": "Male",
+    "playsValorant": "Yes",
+    "playsLeague": "Yes",
+    "employed": "Yes",
+    "hasSiblings": "Yes",
+    "divergent": "Yes",
+    "boosted": "No",
+    "single": "Yes"
+  },
+  {
+    "name": "Kyle Araki",
+    "gender": "Male",
+    "playsValorant": "No",
+    "playsLeague": "Yes",
+    "employed": "No",
+    "hasSiblings": "Yes",
+    "divergent": "Yes",
+    "boosted": "No",
+    "single": "No"
+  },
+  {
+    "name": "Kevin Lee",
+    "gender": "Male",
+    "playsValorant": "Yes",
+    "playsLeague": "Yes",
+    "employed": "Yes",
+    "hasSiblings": "Yes",
+    "divergent": "Yes",
+    "boosted": "No",
+    "single": "Yes"
+  },
+  {
+    "name": "Phi Bui",
+    "gender": "Male",
+    "playsValorant": "Yes",
+    "playsLeague": "Yes",
+    "employed": "No",
+    "hasSiblings": "No",
+    "divergent": "Yes",
+    "boosted": "No",
+    "single": "Yes"
+  },
+  {
+    "name": "Megan Wei",
+    "gender": "Female",
+    "playsValorant": "No",
+    "playsLeague": "Yes",
+    "employed": "Yes",
+    "hasSiblings": "Yes",
+    "divergent": "Yes",
+    "boosted": "No",
+    "single": "No"
+  },
+  {
+    "name": "Johanna Lim",
+    "gender": "Female",
+    "playsValorant": "No",
+    "playsLeague": "No",
+    "employed": "Yes",
+    "hasSiblings": "No",
+    "divergent": "No",
+    "boosted": "No",
+    "single": "No"
+  },
+  {
+    "name": "Jason Chang",
+    "gender": "Male",
+    "playsValorant": "Yes",
+    "playsLeague": "Yes",
+    "employed": "Yes",
+    "hasSiblings": "Yes",
+    "divergent": "Yes",
+    "boosted": "Yes",
+    "single": "No"
+  },
+  {
+    "name": "Robin Lee",
+    "gender": "Male",
+    "playsValorant": "Yes",
+    "playsLeague": "Yes",
+    "employed": "Yes",
+    "hasSiblings": "Yes",
+    "divergent": "Yes",
+    "boosted": "No",
+    "single": "No"
+  }
+]
