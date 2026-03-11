@@ -1,5 +1,6 @@
 [
   {
+    "id": "edwin-miyatake",
     "name": "Edwin Miyatake",
     "image": "/friends/edwin.png",
     "gender": "Male",
@@ -12,6 +13,7 @@
     "single": "No"
   },
   {
+    "id": "sarah-tseng",
     "name": "Sarah Tseng",
     "image": "/friends/sarah.png",
     "gender": "Female",
@@ -24,6 +26,7 @@
     "single": "No"
   },
   {
+    "id": "bobby-kong",
     "name": "Bobby Kong",
     "image": "/friends/bobby.png",
     "gender": "Male",
@@ -36,6 +39,7 @@
     "single": "Yes"
   },
   {
+    "id": "rishav-ghosh",
     "name": "Rishav Ghosh",
     "image": "/friends/rishav.png",
     "gender": "Male",
@@ -48,6 +52,7 @@
     "single": "Yes"
   },
   {
+    "id": "chris-wang",
     "name": "Chris Wang",
     "image": "/friends/chris.png",
     "gender": "Male",
@@ -60,6 +65,7 @@
     "single": "Yes"
   },
   {
+    "id": "alan-han",
     "name": "Alan Han",
     "image": "/friends/alan.png",
     "gender": "Male",
@@ -72,6 +78,7 @@
     "single": "Yes"
   },
   {
+    "id": "brady-wu",
     "name": "Brady Wu",
     "image": "/friends/brady.png",
     "gender": "Male",
@@ -84,6 +91,7 @@
     "single": "Yes"
   },
   {
+    "id": "collin-gaja",
     "name": "Collin Gaja",
     "image": "/friends/collin.png",
     "gender": "Male",
@@ -96,6 +104,7 @@
     "single": "No"
   },
   {
+    "id": "candise-gaja",
     "name": "Candise Gaja",
     "image": "/friends/candise.png",
     "gender": "Female",
@@ -108,6 +117,7 @@
     "single": "No"
   },
   {
+    "id": "justin-wu",
     "name": "Justin Wu",
     "image": "/friends/justin.png",
     "gender": "Male",
@@ -120,6 +130,7 @@
     "single": "No"
   },
   {
+    "id": "jon-tangpiti",
     "name": "Jon Tangpiti",
     "image": "/friends/jon.png",
     "gender": "Male",
@@ -132,6 +143,7 @@
     "single": "Yes"
   },
   {
+    "id": "kyle-araki",
     "name": "Kyle Araki",
     "image": "/friends/kyle.png",
     "gender": "Male",
@@ -144,6 +156,7 @@
     "single": "No"
   },
   {
+    "id": "kevin-lee",
     "name": "Kevin Lee",
     "image": "/friends/kevin.png",
     "gender": "Male",
@@ -156,6 +169,7 @@
     "single": "Yes"
   },
   {
+    "id": "phi-bui",
     "name": "Phi Bui",
     "image": "/friends/phi.png",
     "gender": "Male",
@@ -168,6 +182,7 @@
     "single": "Yes"
   },
   {
+    "id": "megan-wei",
     "name": "Megan Wei",
     "image": "/friends/megan.png",
     "gender": "Female",
@@ -180,6 +195,7 @@
     "single": "No"
   },
   {
+    "id": "johanna-lim",
     "name": "Johanna Lim",
     "image": "/friends/johanna.png",
     "gender": "Female",
@@ -192,6 +208,7 @@
     "single": "No"
   },
   {
+    "id": "jason-chang",
     "name": "Jason Chang",
     "image": "/friends/jason.png",
     "gender": "Male",
@@ -204,6 +221,7 @@
     "single": "No"
   },
   {
+    "id": "robin-lee",
     "name": "Robin Lee",
     "image": "/friends/robin.png",
     "gender": "Male",

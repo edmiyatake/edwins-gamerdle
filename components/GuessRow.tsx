@@ -6,18 +6,20 @@ import type { Friend, GuessResult, MatchResult } from "@/lib/types";
 
 function backFaceClass(result: MatchResult) {
     return result === "correct"
-        ? "border-emerald-400 bg-emerald-500"
-        : "border-rose-400 bg-rose-500";
+        ? "border-emerald-400 bg-emerald-500 text-white"
+        : "border-rose-400 bg-rose-500 text-white";
 }
 
 function FlipSquare({
                         result,
                         label,
+                        value,
                         delay,
                         animate = true,
                     }: {
     result: MatchResult;
     label: string;
+    value: string;
     delay: number;
     animate?: boolean;
 }) {
@@ -40,8 +42,8 @@ function FlipSquare({
 
     return (
         <div
-            title={label}
-            aria-label={label}
+            title={`${label}: ${value}`}
+            aria-label={`${label}: ${value}`}
             className="aspect-square w-full perspective-[1000px]"
         >
             <div
@@ -50,14 +52,18 @@ function FlipSquare({
                     transform: revealed ? "rotateY(180deg)" : "rotateY(0deg)",
                 }}
             >
-                <div className="absolute inset-0 rounded-2xl border border-slate-500 bg-slate-500/80 shadow-[inset_0_1px_0_rgba(255,255,255,0.18)] [backface-visibility:hidden]" />
+                <div className="absolute inset-0 flex items-center justify-center rounded-2xl border border-slate-500 bg-slate-500/80 px-1 text-center text-[10px] font-bold uppercase leading-tight text-slate-100 shadow-[inset_0_1px_0_rgba(255,255,255,0.18)] [backface-visibility:hidden] sm:text-xs">
+                    ?
+                </div>
 
                 <div
-                    className={`absolute inset-0 rounded-2xl border shadow-[inset_0_1px_0_rgba(255,255,255,0.18)] [backface-visibility:hidden] ${backFaceClass(
+                    className={`absolute inset-0 flex items-center justify-center rounded-2xl border px-1 text-center text-[10px] font-bold leading-tight shadow-[inset_0_1px_0_rgba(255,255,255,0.18)] [backface-visibility:hidden] sm:text-xs ${backFaceClass(
                         result
                     )}`}
                     style={{ transform: "rotateY(180deg)" }}
-                />
+                >
+                    <span className="wrap-break-word">{value}</span>
+                </div>
             </div>
         </div>
     );
@@ -118,49 +124,57 @@ export function GuessRow({
 
             <FlipSquare
                 result={result.gender}
-                label={`${friend.name} - Gender`}
-                delay={baseDelay * 0}
+                label="Gender"
+                value={friend.gender}
+                delay={0}
                 animate={animate}
             />
             <FlipSquare
                 result={result.playsValorant}
-                label={`${friend.name} - Plays Valorant`}
-                delay={baseDelay * 1}
+                label="Plays Valorant"
+                value={friend.playsValorant}
+                delay={baseDelay}
                 animate={animate}
             />
             <FlipSquare
                 result={result.playsLeague}
-                label={`${friend.name} - Plays League`}
+                label="Plays League"
+                value={friend.playsLeague}
                 delay={baseDelay * 2}
                 animate={animate}
             />
             <FlipSquare
                 result={result.employed}
-                label={`${friend.name} - Employed`}
+                label="Employed"
+                value={friend.employed}
                 delay={baseDelay * 3}
                 animate={animate}
             />
             <FlipSquare
                 result={result.hasSiblings}
-                label={`${friend.name} - Has Siblings`}
+                label="Has Siblings"
+                value={friend.hasSiblings}
                 delay={baseDelay * 4}
                 animate={animate}
             />
             <FlipSquare
                 result={result.divergent}
-                label={`${friend.name} - Divergent`}
+                label="Divergent"
+                value={friend.divergent}
                 delay={baseDelay * 5}
                 animate={animate}
             />
             <FlipSquare
                 result={result.boosted}
-                label={`${friend.name} - Boosted`}
+                label="Boosted"
+                value={friend.boosted}
                 delay={baseDelay * 6}
                 animate={animate}
             />
             <FlipSquare
                 result={result.single}
-                label={`${friend.name} - Single`}
+                label="Single"
+                value={friend.single}
                 delay={baseDelay * 7}
                 animate={animate}
             />

@@ -11,7 +11,7 @@ import { evaluateGuess } from "@/lib/evaluateGuess";
 import type { Friend, GuessResult, SavedGameState } from "@/lib/types";
 
 const friends = friendsData as Friend[];
-const friendMap = new Map(friends.map((friend) => [friend.name, friend]));
+const friendMap = new Map(friends.map((friend) => [friend.id, friend]));
 
 const GUESS_LIMIT = 8;
 const STORAGE_PREFIX = "frienddle-progress";
@@ -22,15 +22,27 @@ type GuessRowData = {
     animate?: boolean;
 };
 
-function buildGuessRows(names: string[], answer: Friend): GuessRowData[] {
-    return names
-        .map((name) => friendMap.get(name))
+function buildGuessRows(ids: string[], answer: Friend): GuessRowData[] {
+    return ids
+        .map((id) => friendMap.get(id))
         .filter((friend): friend is Friend => Boolean(friend))
         .map((friend) => ({
             friend,
             result: evaluateGuess(friend, answer),
             animate: false,
         }));
+}
+
+function buildLegacyNameToIdMap(friendList: Friend[]) {
+    const map = new Map<string, string>();
+
+    for (const friend of friendList) {
+        if (!map.has(friend.name)) {
+            map.set(friend.name, friend.id);
+        }
+    }
+
+    return map;
 }
 
 function buildShareText(
@@ -99,27 +111,43 @@ export default function HomePage() {
         if (!answer || !puzzleKey) return;
 
         const storageKey = `${STORAGE_PREFIX}:${puzzleKey}`;
+        const legacyNameToId = buildLegacyNameToIdMap(friends);
 
         try {
             const raw = window.localStorage.getItem(storageKey);
 
             if (!raw) {
+                setGuesses([]);
+                setGameWon(false);
+                setGameLost(false);
                 setHydrated(true);
                 return;
             }
 
-            const saved = JSON.parse(raw) as SavedGameState;
+            const saved = JSON.parse(raw) as Partial<SavedGameState> & {
+                guessedNames?: string[];
+            };
 
-            const guessedNames = Array.isArray(saved.guessedNames)
-                ? saved.guessedNames.filter(
-                    (name): name is string => typeof name === "string"
-                )
-                : [];
+            let guessedIds: string[] = [];
 
-            const restoredRows = buildGuessRows(guessedNames, answer);
+            if (Array.isArray(saved.guessedIds)) {
+                guessedIds = saved.guessedIds.filter(
+                    (id): id is string => typeof id === "string"
+                );
+            } else if (Array.isArray(saved.guessedNames)) {
+                guessedIds = saved.guessedNames
+                    .filter((name): name is string => typeof name === "string")
+                    .map((name) => legacyNameToId.get(name))
+                    .filter((id): id is string => Boolean(id));
+            }
+
+            const uniqueGuessedIds = [...new Set(guessedIds)];
+            const restoredRows = buildGuessRows(uniqueGuessedIds, answer);
+
             const solved =
-                restoredRows.some(({ friend }) => friend.name === answer.name) ||
+                restoredRows.some(({ friend }) => friend.id === answer.id) ||
                 Boolean(saved.gameWon);
+
             const lost =
                 !solved &&
                 (Boolean(saved.gameLost) || restoredRows.length >= GUESS_LIMIT);
@@ -127,8 +155,12 @@ export default function HomePage() {
             setGuesses(restoredRows);
             setGameWon(solved);
             setGameLost(lost);
+            setRestoreError("");
         } catch {
             setRestoreError("Could not restore today's progress.");
+            setGuesses([]);
+            setGameWon(false);
+            setGameLost(false);
         } finally {
             setHydrated(true);
         }
@@ -140,7 +172,7 @@ export default function HomePage() {
         const storageKey = `${STORAGE_PREFIX}:${puzzleKey}`;
 
         const savedState: SavedGameState = {
-            guessedNames: guesses.map((guess) => guess.friend.name),
+            guessedIds: guesses.map((guess) => guess.friend.id),
             gameWon,
             gameLost,
         };
@@ -148,18 +180,22 @@ export default function HomePage() {
         window.localStorage.setItem(storageKey, JSON.stringify(savedState));
     }, [guesses, gameWon, gameLost, hydrated, puzzleKey]);
 
-    const filteredFriends = friends
-        .filter((friend) => {
-            const alreadyGuessed = guesses.some(
-                (guess) => guess.friend.name === friend.name
-            );
+    const filteredFriends = useMemo(() => {
+        const normalizedQuery = query.trim().toLowerCase();
 
-            return (
-                !alreadyGuessed &&
-                friend.name.toLowerCase().includes(query.toLowerCase())
-            );
-        })
-        .sort((a, b) => a.name.localeCompare(b.name));
+        return friends
+            .filter((friend) => {
+                const alreadyGuessed = guesses.some(
+                    (guess) => guess.friend.id === friend.id
+                );
+
+                return (
+                    !alreadyGuessed &&
+                    friend.name.toLowerCase().includes(normalizedQuery)
+                );
+            })
+            .sort((a, b) => a.name.localeCompare(b.name));
+    }, [guesses, query]);
 
     const shareText = useMemo(() => {
         return buildShareText(puzzleKey, guesses, gameWon);
@@ -169,13 +205,13 @@ export default function HomePage() {
         if (!answer || !hydrated || gameWon || gameLost) return;
 
         const alreadyGuessed = guesses.some(
-            (guess) => guess.friend.name === friend.name
+            (guess) => guess.friend.id === friend.id
         );
 
         if (alreadyGuessed) return;
 
         const result = evaluateGuess(friend, answer);
-        const solved = friend.name === answer.name;
+        const solved = friend.id === answer.id;
         const nextGuessCount = guesses.length + 1;
         const lost = !solved && nextGuessCount >= GUESS_LIMIT;
 
@@ -194,8 +230,8 @@ export default function HomePage() {
 
     if (!clientNow || !answer) {
         return (
-            <main className="min-h-screen bg-[radial-gradient(circle_at_top,_#1e293b_0%,_#0f172a_35%,_#020617_100%)] px-4 py-8 text-slate-100">
-                <div className="mx-auto max-w-3xl rounded-3xl border border-white/10 bg-white/10 p-8 text-center backdrop-blur-xl shadow-2xl">
+            <main className="min-h-screen bg-[radial-gradient(circle_at_top,#1e293b_0%,#0f172a_35%,#020617_100%)] px-4 py-8 text-slate-100">
+                <div className="mx-auto max-w-3xl rounded-3xl border border-white/10 bg-white/10 p-8 text-center shadow-2xl backdrop-blur-xl">
                     <h1 className="text-3xl font-black">Frienddle</h1>
                     <p className="mt-3 text-slate-300">Loading today&apos;s friend...</p>
                 </div>
@@ -204,7 +240,7 @@ export default function HomePage() {
     }
 
     return (
-        <main className="min-h-screen bg-[radial-gradient(circle_at_top,_#1e293b_0%,_#0f172a_35%,_#020617_100%)] px-4 py-8 text-slate-100">
+        <main className="min-h-screen bg-[radial-gradient(circle_at_top,#1e293b_0%,#0f172a_35%,#020617_100%)] px-4 py-8 text-slate-100">
             <div className="mx-auto max-w-7xl">
                 <GameHeader
                     guessesCount={guesses.length}

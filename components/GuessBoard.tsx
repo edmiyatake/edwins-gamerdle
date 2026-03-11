@@ -45,7 +45,7 @@ export function GuessBoard({ guesses }: { guesses: GuessRowData[] }) {
                     ) : (
                         guesses.map(({ friend, result, animate }) => (
                             <GuessRow
-                                key={friend.name}
+                                key={friend.id}
                                 friend={friend}
                                 result={result}
                                 animate={animate}

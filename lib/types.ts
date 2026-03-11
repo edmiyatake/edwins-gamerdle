@@ -1,6 +1,7 @@
 export type YesNo = "Yes" | "No";
 
 export type Friend = {
+    id: string;
     name: string;
     image: string;
     gender: "Male" | "Female";
@@ -28,7 +29,7 @@ export type GuessResult = {
 };
 
 export type SavedGameState = {
-    guessedNames: string[];
+    guessedIds: string[];
     gameWon: boolean;
     gameLost: boolean;
 };
