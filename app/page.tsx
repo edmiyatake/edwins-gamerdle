@@ -6,7 +6,11 @@ import { GameHeader } from "@/components/GameHeader";
 import { GameStatus } from "@/components/GameStatus";
 import { GuessBoard } from "@/components/GuessBoard";
 import { SearchBox } from "@/components/SearchBox";
-import { getDailyFriend, getPuzzleKey } from "@/lib/dailyFriend";
+import {
+    getDailyFriend,
+    getMsUntilNextPuzzle,
+    getPuzzleKey,
+} from "@/lib/dailyFriend";
 import { evaluateGuess } from "@/lib/evaluateGuess";
 import type { Friend, GuessResult, SavedGameState } from "@/lib/types";
 
@@ -83,7 +87,7 @@ function formatTodayLabel(date: Date) {
 }
 
 export default function HomePage() {
-    const [clientNow, setClientNow] = useState<Date | null>(null);
+    const [puzzleDate, setPuzzleDate] = useState<Date | null>(null);
     const [query, setQuery] = useState("");
     const [guesses, setGuesses] = useState<GuessRowData[]>([]);
     const [gameWon, setGameWon] = useState(false);
@@ -92,23 +96,64 @@ export default function HomePage() {
     const [restoreError, setRestoreError] = useState("");
 
     useEffect(() => {
-        setClientNow(new Date());
+        const syncPuzzleDate = () => {
+            setPuzzleDate(new Date());
+        };
+
+        syncPuzzleDate();
+
+        let timeoutId: number | undefined;
+
+        const scheduleNextSync = () => {
+            const delay = Math.max(getMsUntilNextPuzzle(new Date()) + 50, 50);
+
+            timeoutId = window.setTimeout(() => {
+                syncPuzzleDate();
+                scheduleNextSync();
+            }, delay);
+        };
+
+        scheduleNextSync();
+
+        const handleFocus = () => {
+            syncPuzzleDate();
+        };
+
+        const handleVisibilityChange = () => {
+            if (!document.hidden) {
+                syncPuzzleDate();
+            }
+        };
+
+        window.addEventListener("focus", handleFocus);
+        document.addEventListener("visibilitychange", handleVisibilityChange);
+
+        return () => {
+            if (timeoutId) {
+                window.clearTimeout(timeoutId);
+            }
+            window.removeEventListener("focus", handleFocus);
+            document.removeEventListener("visibilitychange", handleVisibilityChange);
+        };
     }, []);
 
     const answer = useMemo(() => {
-        return clientNow ? getDailyFriend(clientNow) : null;
-    }, [clientNow]);
+        return puzzleDate ? getDailyFriend(puzzleDate) : null;
+    }, [puzzleDate]);
 
     const puzzleKey = useMemo(() => {
-        return clientNow ? getPuzzleKey(clientNow) : "";
-    }, [clientNow]);
+        return puzzleDate ? getPuzzleKey(puzzleDate) : "";
+    }, [puzzleDate]);
 
     const todayLabel = useMemo(() => {
-        return clientNow ? formatTodayLabel(clientNow) : "Loading...";
-    }, [clientNow]);
+        return puzzleDate ? formatTodayLabel(puzzleDate) : "Loading...";
+    }, [puzzleDate]);
 
     useEffect(() => {
         if (!answer || !puzzleKey) return;
+
+        setHydrated(false);
+        setQuery("");
 
         const storageKey = `${STORAGE_PREFIX}:${puzzleKey}`;
         const legacyNameToId = buildLegacyNameToIdMap(friends);
@@ -120,6 +165,7 @@ export default function HomePage() {
                 setGuesses([]);
                 setGameWon(false);
                 setGameLost(false);
+                setRestoreError("");
                 setHydrated(true);
                 return;
             }
@@ -228,7 +274,7 @@ export default function HomePage() {
         setGameLost(lost);
     }
 
-    if (!clientNow || !answer) {
+    if (!puzzleDate || !answer) {
         return (
             <main className="min-h-screen bg-[radial-gradient(circle_at_top,#1e293b_0%,#0f172a_35%,#020617_100%)] px-4 py-8 text-slate-100">
                 <div className="mx-auto max-w-3xl rounded-3xl border border-white/10 bg-white/10 p-8 text-center shadow-2xl backdrop-blur-xl">
